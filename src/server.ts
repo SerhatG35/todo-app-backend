@@ -1,11 +1,13 @@
 import * as Router from 'koa-router';
-import IndexController from './controllers/index.controller';
-import UsersController from './controllers/users.controller';
+import TodosController from './controllers/todos.controller';
+import UserController from './controllers/user.controller';
 
 const router = new Router();
 
-router.get('/', IndexController.getIndex);
+router.get('/todos', TodosController.getTodos);
+router.get('/todo', TodosController.getTodo);
+router.post('/todos', TodosController.postTodo);
 
-router.get('/users', UsersController.getUsers);
+router.post('/user', UserController.register);
 
 export default router;
