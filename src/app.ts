@@ -1,17 +1,17 @@
-import * as Koa from 'koa';
-import * as bodyParser from 'koa-bodyparser';
-import * as cors from '@koa/cors';
-import * as helmet from 'koa-helmet';
-import * as json from 'koa-json';
-import * as logger from 'koa-logger';
+import * as Koa from "koa";
+import * as bodyParser from "koa-bodyparser";
+import * as cors from "@koa/cors";
+import * as helmet from "koa-helmet";
+import * as json from "koa-json";
+import * as logger from "koa-logger";
 
-import 'reflect-metadata';
+import "accepts";
 
-import router from './server';
-import dbConnect from './database/initDatabase';
+import router from "./server";
+import dbConnect from "./database/initDatabase";
 
 const app = new Koa();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(helmet());
 app.use(cors());

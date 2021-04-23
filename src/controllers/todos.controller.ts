@@ -6,8 +6,8 @@ import Todo, { ITodo } from '../models/todo';
 export default class TodosController {
   public static async getTodo(ctx: BaseContext) {
     try {
-      const todos = await Todo.find({});
-      ctx.body = todos;
+      const todo = await Todo.find({});
+      ctx.body = todo;
     } catch (error) {
       console.log('Error ->', error);
     }
