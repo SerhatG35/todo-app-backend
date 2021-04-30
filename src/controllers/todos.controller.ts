@@ -3,15 +3,8 @@ import Todo, { ITodo } from '../models/todo';
 
 //Kullanıcıya ait TODO CRUD yap.
 //Todo id'ye göre clientta görüntüle.
+//verify token check olacak ardından post paylaşılabilecek
 export default class TodosController {
-  public static async getTodo(ctx: BaseContext) {
-    try {
-      const todo = await Todo.find({});
-      ctx.body = todo;
-    } catch (error) {
-      console.log('Error ->', error);
-    }
-  }
 
   public static async getTodos(ctx: BaseContext) {
     try {
