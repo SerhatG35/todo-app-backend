@@ -19,13 +19,9 @@ export default class UserController {
 
   public static async loginUser(ctx: ExtendableContext) {
     const reqBody = ctx.request.body;
-    console.log(reqBody);
     const user = await User.findOne({ username: reqBody.auth.username });
-    console.log(user);
     if (!user) {
-      ctx.status = 400;
-      ctx.message = "User doesn't exists";
-      return (ctx.body = "User doesn't exists");
+      return ctx.throw(400,"User doesn't exists")
     }
     try {
       const passwordCheck = await bcrypt.compare(
@@ -40,22 +36,19 @@ export default class UserController {
             email: user.email,
             firstname: user.firstname,
           },
-          'secretkey'
+          process.env.SECRET_KEY
         );
         ctx.body = {
           token,
           userName: user.username,
-          firstName: user.firstname,
+          id: user._id,
         };
-        ctx.set('auth-token', token);
+        ctx.set("auth-token", token);
       } else {
-        ctx.status = 400;
-        ctx.message = 'Invalid password';
-        return (ctx.body = 'Invalid password');
+        return ctx.throw(400,"Invalid password")
       }
     } catch (error) {
-      console.log('Error ->', error);
-      ctx.body = error.message;
+      return ctx.throw(400,(error.message))
     }
   }
 
@@ -64,23 +57,17 @@ export default class UserController {
     const emailExists = await User.findOne({ email: reqBody.email });
     const usernameExists = await User.findOne({ username: reqBody.username });
     if (emailExists) {
-      ctx.status = 400;
-      ctx.message = 'Email already exists';
-      return (ctx.body = 'Email already exists');
+      return ctx.throw(400,"Email already exists")
     }
     if (usernameExists) {
-      ctx.status = 400;
-      ctx.message = 'Username is taken';
-      return (ctx.body = 'Username is taken');
+      return ctx.throw(400,"Username is taken")
     }
     try {
       reqBody.password = await bcrypt.hash(reqBody.password, 5);
       const newUser = await User.create(reqBody);
       ctx.body = newUser;
     } catch (error) {
-      console.log('Error ->', error);
-      ctx.status = 400;
-      ctx.body = error.message;
+      return ctx.throw(400,(error.message))
     }
   }
 }

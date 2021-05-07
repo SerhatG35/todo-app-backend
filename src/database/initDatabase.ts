@@ -5,7 +5,7 @@ async function dbConnect() {
     return;
   }
 
-  return mongoose.connect('mongodb+srv://serhat-admin:sss123456@cluster0.kmmv1.mongodb.net/login-info?retryWrites=true&w=majority', {
+  return mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

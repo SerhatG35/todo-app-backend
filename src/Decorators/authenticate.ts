@@ -19,10 +19,10 @@ export function Authenticate(
   descriptor.value = function (ctx: ParameterizedContext) {
     try {
       const token = ctx.header.authorization.split(' ')[1];
-      const verified = jwt.verify(token, 'secretkey') as verifiedUser;
+      const verified = jwt.verify(token, process.env.SECRET_KEY) as verifiedUser;
       if (verified) return originalFn.call(this, ctx);
     } catch (error) {
-      return ctx.throw(400, "User doesn't exists");
+      return ctx.throw(400, "Authentication failed");
     }
   };
 }
