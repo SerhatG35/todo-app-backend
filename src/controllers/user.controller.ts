@@ -3,25 +3,14 @@ import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
 import User, { IUser } from '../models/user';
-import { Authenticate } from '../Decorators/authenticate';
+import { Authenticate } from '../decorators/authenticate';
 
 export default class UserController {
-  @Authenticate
-  public static async getUsers(ctx: ExtendableContext) {
-    try {
-      const user = await User.find({});
-      ctx.body = user;
-    } catch (error) {
-      console.log('Error -> ', error);
-      ctx.body = error.message;
-    }
-  }
-
   public static async loginUser(ctx: ExtendableContext) {
     const reqBody = ctx.request.body;
     const user = await User.findOne({ username: reqBody.auth.username });
     if (!user) {
-      return ctx.throw(400,"User doesn't exists")
+      return ctx.throw(400, "User doesn't exists");
     }
     try {
       const passwordCheck = await bcrypt.compare(
@@ -43,12 +32,12 @@ export default class UserController {
           userName: user.username,
           id: user._id,
         };
-        ctx.set("auth-token", token);
+        ctx.set('auth-token', token);
       } else {
-        return ctx.throw(400,"Invalid password")
+        return ctx.throw(400, 'Invalid password');
       }
     } catch (error) {
-      return ctx.throw(400,(error.message))
+      return ctx.throw(400, error.message);
     }
   }
 
@@ -57,17 +46,17 @@ export default class UserController {
     const emailExists = await User.findOne({ email: reqBody.email });
     const usernameExists = await User.findOne({ username: reqBody.username });
     if (emailExists) {
-      return ctx.throw(400,"Email already exists")
+      return ctx.throw(400, 'Email already exists');
     }
     if (usernameExists) {
-      return ctx.throw(400,"Username is taken")
+      return ctx.throw(400, 'Username is taken');
     }
     try {
       reqBody.password = await bcrypt.hash(reqBody.password, 5);
       const newUser = await User.create(reqBody);
       ctx.body = newUser;
     } catch (error) {
-      return ctx.throw(400,(error.message))
+      return ctx.throw(400, error.message);
     }
   }
 }

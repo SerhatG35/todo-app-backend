@@ -3,15 +3,15 @@ import { card } from '../types/types';
 
 export interface ITodo extends mongoose.Document {
   id: string;
-  username:string;
-  cards: card[]
+  username: string;
+  cards: card[];
 }
 
 export const TodoSchema = new mongoose.Schema(
   {
     id: { type: String, required: true },
     username: { type: String, required: true },
-    cards: {type:[{title:String,todos:[{todo:String,isCompleted:Boolean}]}], required:true}
+    cards: [{ title: String, todos: [{ todo: String, isCompleted: Boolean }] }],
   },
   { versionKey: false }
 );
