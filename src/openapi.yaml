@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: "0.1"
+servers:
+  - url: "http://localhost:4000"
+paths:
+  /users:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        default:
+          description: Auto generated using Swagger Inspector
+      servers:
+        - url: "http://localhost:4000"
+    servers:
+      - url: "http://localhost:4000"
+  /login:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    password:
+                      type: string
+                    username:
+                      type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "auth":{
+                          "username":"testuser",
+                          "password":"123123"
+                      }
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: "http://localhost:4000"
+    servers:
+      - url: "http://localhost:4000"
+  /register:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "firstname":"testuser",
+                      "email":"mytestuser@test.com",
+                      "username":"mytestuser",
+                      "password":"thisispw"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: "http://localhost:4000"
+    servers:
+      - url: "http://localhost:4000"
+# components:
+#   securitySchemes:
+#     oauth2:
+#       type: oauth2
+#       flows:
+#         implicit:
+#           authorizationUrl: "http://yourauthurl.com"
+#           scopes:
+#             scope_name: Enter your scopes here
