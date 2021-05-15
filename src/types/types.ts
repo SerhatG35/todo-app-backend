@@ -4,6 +4,7 @@ export type todos = {
 };
 
 export type card = {
+  _id: string;
   title: string;
   todos: todos[];
 };
