@@ -2,10 +2,9 @@ import { ExtendableContext } from 'koa';
 import Todo, { ITodo } from '../models/todo';
 import * as jwt from 'jsonwebtoken';
 import { Authenticate } from '../decorators/authenticate';
-import * as chalk from 'chalk';
 export default class TodosController {
   @Authenticate
-  public static async getTodos(ctx: ExtendableContext) {
+  public static async getCards(ctx: ExtendableContext) {
     try {
       const { username } = jwt.decode(ctx.header.authorization.split(' ')[1], {
         json: true,
@@ -18,7 +17,7 @@ export default class TodosController {
   }
 
   @Authenticate
-  public static async postTodo(ctx: ExtendableContext) {
+  public static async updateCards(ctx: ExtendableContext) {
     try {
       const reqBody = ctx.request.body as ITodo;
       console.log(reqBody);
@@ -37,7 +36,7 @@ export default class TodosController {
   }
 
   @Authenticate
-  public static async deleteTodo(ctx: ExtendableContext) {
+  public static async deleteCards(ctx: ExtendableContext) {
     try {
       const todoId = ctx.request.url.split('/')[2];
       const { username } = jwt.decode(ctx.header.authorization.split(' ')[1], {

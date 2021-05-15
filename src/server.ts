@@ -4,9 +4,9 @@ import UserController from './controllers/user.controller';
 
 const router = new Router();
 
-router.get('/todos', TodosController.getTodos);
-router.post('/todos', TodosController.postTodo);
-router.delete('/todos/:id', TodosController.deleteTodo);
+router.get('/todos', TodosController.getCards);
+router.post('/todos', TodosController.updateCards);
+router.delete('/todos/:id', TodosController.deleteCards);
 
 router.post('/login', UserController.loginUser);
 router.post('/register', UserController.registerUser);

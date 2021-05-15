@@ -21,7 +21,6 @@
     "@types/node": "^14.14.41",
     "@types/yamljs": "^0.2.31",
     "bcrypt": "^5.0.1",
-    "chalk": "^4.1.1",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.1",
@@ -40,5 +39,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "14.15.0"
   }
 }
