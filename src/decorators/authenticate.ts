@@ -1,6 +1,6 @@
 import { ExtendableContext } from 'koa';
 import * as jwt from 'jsonwebtoken';
-import { verifiedUser } from '../types/types';
+import { VerifiedUser } from '../types/types';
 
 export function Authenticate(
   target: any,
@@ -14,7 +14,7 @@ export function Authenticate(
       const verified = jwt.verify(
         token,
         process.env.SECRET_KEY
-      ) as verifiedUser;
+      ) as VerifiedUser;
       if (verified) return originalFn.call(this, ctx);
     } catch (error) {
       return ctx.throw(401, 'Authentication failed');

@@ -1,12 +1,12 @@
-export type todos = {
+export type Todos = {
   todo: string;
   isCompleted: boolean;
 };
 
-export type card = {
-  _id: string;
+export type Card = {
+  id: string;
   title: string;
-  todos: todos[];
+  todos: Todos[];
 };
 
 export type ILogin = {
@@ -16,7 +16,7 @@ export type ILogin = {
   };
 };
 
-export type verifiedUser =
+export type VerifiedUser =
   | {
       id: string;
       username: string;
