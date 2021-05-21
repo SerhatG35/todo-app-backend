@@ -15,6 +15,7 @@ export const TodoSchema = new mongoose.Schema(
       {
         title: String,
         todos: [{ todo: String, isCompleted: Boolean }],
+        category: String,
       },
     ],
   },

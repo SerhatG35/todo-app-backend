@@ -7,6 +7,7 @@ export type Card = {
   id: string;
   title: string;
   todos: Todos[];
+  category: string;
 };
 
 export type ILogin = {
